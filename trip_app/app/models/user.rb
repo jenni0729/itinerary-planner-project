@@ -3,4 +3,5 @@ class User < ActiveRecord::Base
   validates :username, uniqueness: true, presence: true
   validates :email, uniqueness: true, presence: true
   validates :first_name, :last_name, presence: true
+  has_many :itineraries 
 end

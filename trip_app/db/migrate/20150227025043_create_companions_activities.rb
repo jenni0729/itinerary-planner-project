@@ -1,6 +1,6 @@
-class CreateCompanionsDestinations < ActiveRecord::Migration
+class CreateCompanionsActivities < ActiveRecord::Migration
   def change
-    create_table :companions_destinations do |t|
+    create_table :companions_activities do |t|
       t.integer :destination_id
       t.integer :companion_id
 

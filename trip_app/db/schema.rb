@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150227183526) do
+ActiveRecord::Schema.define(version: 20150227214910) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "activities", force: :cascade do |t|
+    t.string   "location"
+    t.string   "name"
+    t.integer  "itinerary_id"
+    t.date     "date"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "companions", force: :cascade do |t|
     t.string   "first_name"
@@ -25,7 +34,7 @@ ActiveRecord::Schema.define(version: 20150227183526) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "companions_destinations", force: :cascade do |t|
+  create_table "companions_activities", force: :cascade do |t|
     t.integer  "destination_id"
     t.integer  "companion_id"
     t.datetime "created_at",     null: false
@@ -35,15 +44,6 @@ ActiveRecord::Schema.define(version: 20150227183526) do
   create_table "companions_itineraries", force: :cascade do |t|
     t.integer  "companion_id"
     t.integer  "itinerary_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  create_table "destinations", force: :cascade do |t|
-    t.string   "location"
-    t.string   "name"
-    t.integer  "itinerary_id"
-    t.date     "date"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end

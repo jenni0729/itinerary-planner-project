@@ -7,4 +7,6 @@ class Companion < ActiveRecord::Base
   has_many :destinations, through: :companions_destinations
   has_many :companions_itineraries
   has_many :itineraries, through: :companions_itineraries
+
+  has_many :reviews, as: :reviewable
 end

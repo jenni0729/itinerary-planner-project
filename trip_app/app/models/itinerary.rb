@@ -2,7 +2,6 @@ class Itinerary < ActiveRecord::Base
   validates :origin, :destination, :name, presence: true
 
   has_many :destinations, dependent: :destroy
-  has_many :companions, dependent: :destroy
 
   has_many :companions_itineraries
   has_many :companions, through: :companions_itineraries

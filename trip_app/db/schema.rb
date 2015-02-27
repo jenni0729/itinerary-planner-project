@@ -42,10 +42,10 @@ ActiveRecord::Schema.define(version: 20150227183526) do
   create_table "destinations", force: :cascade do |t|
     t.string   "location"
     t.string   "name"
-    t.integer  "user_id"
+    t.integer  "itinerary_id"
     t.date     "date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "itineraries", force: :cascade do |t|

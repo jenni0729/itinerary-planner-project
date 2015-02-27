@@ -1,5 +1,5 @@
 class ModifyOwnerIdToDestinations < ActiveRecord::Migration
   def change
-    rename_column :destinations, :owner_id, :user_id
+    rename_column :destinations, :owner_id, :itinerary_id
   end
 end

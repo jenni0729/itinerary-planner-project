@@ -1,4 +1,10 @@
 class ActivitiesController < ApplicationController
+
+  def index
+    @itinerary = Itinerary.find params[:itinerary_id]
+    @activities = @itinerary.activities
+  end
+
   def show
   end
 
@@ -8,6 +14,5 @@ class ActivitiesController < ApplicationController
   def new
   end
 
-  def index
-  end
+
 end

@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
+  get '/test', to: 'mandrill#test_form', as: "test_form"
+  post '/test', to: 'mandrill#test', as: "test"
+  
   get 'users/login'
-
   get 'users/signup'
-
   get 'users/home'
 
   resources :itineraries do 

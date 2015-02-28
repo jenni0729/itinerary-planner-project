@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'users#login'
+
   get '/test', to: 'mandrill#test_form', as: "test_form"
   post '/test', to: 'mandrill#test', as: "test"
 

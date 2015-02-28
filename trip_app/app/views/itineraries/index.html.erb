@@ -1,2 +1,42 @@
-<h1>Itineraries#index</h1>
-<p>Find me in app/views/itineraries/index.html.erb</p>
+<%= render "shared/navbar" %>
+
+<div class="container-fluid">
+  <br><Br>
+  <h2 class = "text-center">Itineraries:</h2>
+  <br>
+
+  <!-- <table style = "border: 1px solid black; border-collapse: collapse"> -->
+  <div class="row">
+    <div class ="col-md-10 col-md-offset-1">
+      <table class ="table table-striped">
+        <tr>
+          <th>Name</th>
+          <th>Origin</th>
+          <th>Destination</th>
+          <th>Departure Date</th>
+          <th>Return Date</th>
+          <th>Owner</th>
+        </tr>
+        <% @itineraries.each do |itinerary| %>
+        <tr >
+          <td><%= itinerary.name  %></td>
+          <td><%= itinerary.origin %></td>
+          <td><%= itinerary.destination %></td>
+          <td><%= itinerary.departure_date %></td>
+          <td><%= itinerary.return_date %></td>
+          <td><%= User.find(itinerary.user_id).username %></td>
+          <td><%= link_to('Info', itinerary_path(itinerary), {class: "btn-xs btn-info"})%></td>
+          <td><%= link_to('Edit', edit_itinerary_path(itinerary), {class: "btn-xs btn-info"})%></td>
+          <td><%= link_to('Delete', itinerary_path(itinerary), method: :delete, data: { confirm: "Are you sure?" }, class: "btn-xs btn-danger")%></td>
+        </tr>
+        <%end %>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class ="col-md-2 col-md-offset-1">
+      <%=  link_to('Add new ', new_itinerary_path, {class: "btn btn-primary"}) %>
+    </div>
+  </div>
+</div>

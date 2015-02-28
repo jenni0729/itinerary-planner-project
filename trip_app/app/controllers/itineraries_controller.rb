@@ -1,7 +1,7 @@
 class ItinerariesController < ApplicationController
 
   # before_action :find_itinerary, only: [:show, :edit, :destroy, :add_comment, :remove_comment]
-  before_action :find_itinerary, only: [:show, :edit, :update, :destroy]
+  before_action :find_itinerary, only: [:show, :edit, :update]
 
   def index
     @itineraries = Itinerary.all
@@ -46,8 +46,16 @@ class ItinerariesController < ApplicationController
   end
 
   def destroy
-    @itinerary.destroy
+    itinerary = Itinerary.find params[:id] # No need for instance var here #
+    binding.pry
+    if session[:user_id] != itinerary[:user_id]
+      binding.pry
+      flash[:alert] = "You are not authorized to delete this itinerary"
+      redirect_to itineraries_path 
+    else  
+    itinerary.destroy
     redirect_to itineraries_path
+    end
   end
 
   private

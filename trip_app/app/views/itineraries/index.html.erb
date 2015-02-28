@@ -30,7 +30,7 @@
           <td><%= User.find(itinerary.user_id).username %></td>
           <td><%= link_to('Info', itinerary_path(itinerary), {class: "btn-xs btn-info"})%></td>
           <td><%= link_to('Edit', edit_itinerary_path(itinerary), {class: "btn-xs btn-info"})%></td>
-          <td><%= link_to('Delete', itinerary_path(itinerary), method: :delete, data: { confirm: "Are you sure?" }, class: "btn-xs btn-danger")%></td>
+          <td><%= link_to('Delete', itinerary_path(itinerary), method: :delete, data: { confirm: "Are you sure? Deleting this itinerary will delete all corresponding aacitivites and companions." }, class: "btn-xs btn-danger")%></td>
         </tr>
         <%end %>
       </table>

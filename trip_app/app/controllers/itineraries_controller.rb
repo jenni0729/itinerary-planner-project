@@ -22,10 +22,15 @@ class ItinerariesController < ApplicationController
 
   def create
     @itinerary = Itinerary.new itinerary_params
+    binding.pry
     if @itinerary.save
       redirect_to itineraries_path
     else
+      if session[:user_id] == nil
+      flash.now[:alert] = "Please Login"
+      else  
       flash.now[:alert] = "Please correct the following input errors"
+      end
       render :new
     end
   end

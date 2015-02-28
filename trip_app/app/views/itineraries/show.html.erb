@@ -5,14 +5,15 @@
 
   <!-- <table style = "border: 1px solid black; border-collapse: collapse"> -->
   <div class="row">
-    <div class ="col-md-6 col-md-offset-3">
+    <div class ="col-md-8 col-md-offset-2">
       <table class ="table table-striped">
         <tr>
           <th>Name</th>
           <th>Origin</th>
           <th>Destination</th>
-          <th>Departure Date</th>
+          <th>Depart Date</th>
           <th>Return Date</th>
+          <th>Activities</th>
           <th>Owner</th>
         </tr>
         <tr>
@@ -21,6 +22,7 @@
           <td><%= @itinerary.destination %></td>
           <td><%= @itinerary.departure_date %></td>
           <td><%= @itinerary.return_date %></td>
+          <td><%= link_to('See Activities', itinerary_activities_path(@itinerary), {class: "btn-xs btn-info"}) %></td>
           <td><%= @itinerary_owner.username %></td>
         </tr>
       </table>

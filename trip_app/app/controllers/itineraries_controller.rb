@@ -22,7 +22,6 @@ class ItinerariesController < ApplicationController
 
   def create
     @itinerary = Itinerary.new itinerary_params
-    binding.pry
     if @itinerary.save
       redirect_to itineraries_path
     else
@@ -47,9 +46,7 @@ class ItinerariesController < ApplicationController
 
   def destroy
     itinerary = Itinerary.find params[:id] # No need for instance var here #
-    binding.pry
     if session[:user_id] != itinerary[:user_id]
-      binding.pry
       flash[:alert] = "You are not authorized to delete this itinerary"
       redirect_to itineraries_path 
     else  

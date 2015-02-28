@@ -18,14 +18,13 @@ class UsersController < ApplicationController
   end 
 
   def attempt_login
-    binding.pry
     if User.exists?(username: user_params[:username])
       @user = User.find_by(username: user_params[:username])
-      binding.pry
       if @user.authenticate(user_params[:password])
           session[:user_id] = @user.id
           session[:username] = @user.username
-          flash[:notice] = "Welcome #{@user.username}"
+          session[:first_name] = @user.first_name
+          flash[:notice] = "Welcome #{@user.first_name}"
           redirect_to itineraries_path
       else
         flash[:notice] = "Incorrect Password"
@@ -40,6 +39,7 @@ class UsersController < ApplicationController
   def logout 
     session[:user_id] = nil
     session[:username] = nil
+    session[:first_name] = nil
     flash[:notice] = "You are now logged out."
       redirect_to itineraries_path
   end 

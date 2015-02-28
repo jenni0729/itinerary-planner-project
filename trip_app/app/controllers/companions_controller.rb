@@ -10,4 +10,9 @@ class CompanionsController < ApplicationController
 
   def index
   end
+
+  def full_name
+    "#{}"
+  end
+
 end

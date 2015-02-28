@@ -13,6 +13,7 @@ class ItinerariesController < ApplicationController
 
   def show
     @itinerary_owner = User.find @itinerary.user_id
+    @reviews = @itinerary.reviews
   end
 
   def edit

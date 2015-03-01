@@ -14,10 +14,10 @@ Rails.application.routes.draw do
   post '/itineraries/:itinerary_id/activities/:activity_id/users', to: 'users#create_activity', as: 'create_activity_companions'
   delete '/itineraries/:itinerary_id/activities/:activity_id/users', to: 'users#index_activity', as: 'delete_activity_companions'
 
-  post '/itineraries/:itinerary_id/activities/:activity_id/reviews' => 'reviews#create_activity_review', as: 'itinerary_activity_reviews'
+  post '/itineraries/:some_itinerary/activities/:activity_id/reviews' => 'reviews#create_review', as: 'itinerary_activity_reviews'
 
   resources :itineraries do
-    post '/reviews' => 'reviews#create_itinerary_review', as: 'reviews'
+    post '/reviews' => 'reviews#create_review', as: 'reviews'
     resources :activities
     resources :companions
   end

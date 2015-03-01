@@ -17,6 +17,9 @@
       </div>
       <!-- hidden input -->
       <%= f.input :itinerary_id, :as => :hidden, :input_html => { :value => @itinerary.id }%>
+      <%= f.input :start_date, :as => :hidden, :input_html => { :value => @itinerary.departure_date }%>
+      <%= f.input :end_date, :as => :hidden, :input_html => { :value => @itinerary.return_date }%>
+
     </div>
     <br>
     <div class ="row">

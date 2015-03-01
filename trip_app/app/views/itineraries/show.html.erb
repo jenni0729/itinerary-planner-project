@@ -1,8 +1,8 @@
 <%= render "shared/navbar" %>
+<br>
 <div class="container-fluid">
-
   <h2 class = "text-center"> <%= @itinerary.name%> </h2>
-
+  <br>
   <!-- <table style = "border: 1px solid black; border-collapse: collapse"> -->
   <div class="row">
     <div class ="col-md-8 col-md-offset-2">
@@ -15,6 +15,7 @@
           <th>Return Date</th>
           <th>Activities</th>
           <th>Owner</th>
+          <th>Edit</th>
         </tr>
         <tr>
           <td><%= @itinerary.name %></td>
@@ -24,6 +25,7 @@
           <td><%= @itinerary.return_date %></td>
           <td><%= link_to('See Activities', itinerary_activities_path(@itinerary), {class: "btn-xs btn-info"}) %></td>
           <td><%= @itinerary_owner.username %></td>
+          <td><%= link_to('Edit', edit_itinerary_path(@itinerary), {class: "btn-xs btn-info"})%></td>
         </tr>
       </table>
     </div>
@@ -45,12 +47,12 @@
             <th>Remove</th>
           <% end %>
         </tr>
-        <% @itinerary.companions.each do |companion| %>
+        <% @itinerary.users.each do |companion| %>
           <tr>
             <td><%= companion.first_name %> <%= companion.last_name %></td>
             <% if session[:user_id] == @itinerary.user_id %>
               <!-- double-check below -->
-              <td><%= link_to('Delete', itinerary_companion_path(@itinerary, companion), method: :delete, data: { confirm: "Are you sure?" }, class: "btn-xs btn-danger")%></td>
+              <td><%= link_to('Remove', itinerary_companion_path(@itinerary, companion), method: :delete, data: { confirm: "Are you sure?" }, class: "btn-xs btn-danger")%></td>
             <% end %>
           </tr>
         <% end %>
@@ -60,7 +62,7 @@
       <br>
       <% @reviews.each do |review| %>
         <p>
-          <%= review.content %> - <%= time_ago_in_words review.created_at %> ago
+          <%= review.content %> - <%= time_ago_in_words review.created_at %> ago by <strong><%= User.find(session[:user_id]).username %></strong>
         </p>
       <% end %>
       <!-- rows are lines of text, column is one character (default column size applied here)
@@ -72,6 +74,10 @@
         <%= f.submit "Add comment" %>
       <% end %>
     </div>
+  </div>
+  <br><br>
+  <div class = "col-md-2 col-md-offset-2">
+    <%=  link_to('Back to Itineraries', itineraries_path, {class: "btn btn-primary"}) %>
   </div>
 </div>
 

@@ -39,7 +39,7 @@
             <th>Remove</th>
           <% end %>
         </tr>
-        <% @activity.companions.each do |companion| %>
+        <% @activity.users.each do |companion| %>
           <tr>
             <td><%= companion.first_name %> <%= companion.last_name %></td>
             <% if session[:user_id] == @itinerary.user_id %>
@@ -54,12 +54,12 @@
       <br>
       <% @reviews.each do |review| %>
         <p>
-          <%= review.content %> - <%= time_ago_in_words review.created_at %> ago
+          <%= review.content %> - <%= time_ago_in_words review.created_at %> ago by <strong><%= User.find(session[:user_id]).username %></strong>
         </p>
       <% end %>
       <!-- rows are lines of text, column is one character (default column size applied here)
       better to use CSS to manipulate text_area -->
-      <%= form_for [@activity, Review.new] do |f| %>
+      <%= form_for [@itinerary, @activity, Review.new] do |f| %>
         <div>
           <%= f.text_area :content, :rows => 3, :cols => 50 %>
         </div>

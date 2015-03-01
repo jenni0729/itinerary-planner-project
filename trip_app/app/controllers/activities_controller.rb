@@ -20,7 +20,7 @@ class ActivitiesController < ApplicationController
   end
 
   def create
-    @activity = Activity.new
+    @activity = Activity.new activity_params
     if @activity.save
       redirect_to itinerary_activities_path(@itinerary)
     else

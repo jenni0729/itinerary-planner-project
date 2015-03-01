@@ -1,10 +1,8 @@
 <%= render "shared/navbar" %>
-
+<br>
 <div class="container-fluid">
-  <br><Br>
   <h2 class = "text-center">Itineraries</h2>
   <br>
-
   <!-- <table style = "border: 1px solid black; border-collapse: collapse"> -->
   <div class="row">
     <div class ="col-md-10 col-md-offset-1">
@@ -30,13 +28,12 @@
           <td><%= User.find(itinerary.user_id).username %></td>
           <td><%= link_to('Info', itinerary_path(itinerary), {class: "btn-xs btn-info"})%></td>
           <td><%= link_to('Edit', edit_itinerary_path(itinerary), {class: "btn-xs btn-info"})%></td>
-          <td><%= link_to('Delete', itinerary_path(itinerary), method: :delete, data: { confirm: "Are you sure? Deleting this itinerary will delete all corresponding aacitivites and companions." }, class: "btn-xs btn-danger")%></td>
+          <td><%= link_to('Delete', itinerary_path(itinerary), method: :delete, data: { confirm: "Are you sure? Deleting this itinerary will delete all corresponding acitivites and companions." }, class: "btn-xs btn-danger")%></td>
         </tr>
         <%end %>
       </table>
     </div>
   </div>
-
   <div class="row">
     <div class ="col-md-2 col-md-offset-1">
       <%=  link_to('Add new ', new_itinerary_path, {class: "btn btn-primary"}) %>

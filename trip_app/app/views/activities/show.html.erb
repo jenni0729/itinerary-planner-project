@@ -59,8 +59,7 @@
       <% end %>
       <!-- rows are lines of text, column is one character (default column size applied here)
       better to use CSS to manipulate text_area -->
-      <%= form_for ([@itinerary, @activity, Review.new],url:itinerary_activity_reviews_path)
- do |f| %>
+    <%= form_for [@itinerary, @activity, Review.new] do |f| %>
         <div>
           <%= f.text_area :content, :rows => 3, :cols => 50 %>
         </div>

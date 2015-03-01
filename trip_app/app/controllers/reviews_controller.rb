@@ -9,7 +9,9 @@ class ReviewsController < ApplicationController
   end
 
   def create_itinerary_review
+    binding.pry
     unless find_reviewable_itinerary.reviews.build(review_params).save
+      binding.pry
       flash[:notice] = "Review validation failed"
     end
     # :back is native?

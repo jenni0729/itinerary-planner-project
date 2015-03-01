@@ -1,7 +1,7 @@
 class ActivitiesController < ApplicationController
 
-  before_action :find_itinerary, only: [:index, :new, :show, :edit, :create, :update]
-  before_action :find_activity, only: [:edit, :update, :show]
+  before_action :find_itinerary, only: [:index, :new, :show, :edit, :create, :update, :destroy]
+  before_action :find_activity, only: [:edit, :update, :show, :destroy]
 
   def index
     @activities = @itinerary.activities
@@ -40,8 +40,14 @@ class ActivitiesController < ApplicationController
   end
 
   def destroy
-    itinerary = Itinerary.find params[:itinerary_id]
-    itinerary.destroy
+    # Note: The instance variables are both needed for redirection
+    if session[:user_id] != itinerary[:user_id]
+      flash[:alert] = "You are not authorized to delete this activity"
+      redirect_to itinerary_activity_path(@itinerary, @activity)
+    else
+      activity.destroy
+      redirect_to itinerary_activities_path(@itinerary)
+    end
   end
 
   private

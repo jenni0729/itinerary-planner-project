@@ -47,24 +47,4 @@ class ReviewsController < ApplicationController
     nil
   end
 
-  # def find_reviewable_itinerary
-  #   params.each do |name, value|
-  #     if name =~ /(.+)_id$/
-  #       binding.pry
-  #       return $1.classify.constantize.find(value)
-  #     end
-  #   end
-  #   nil
-  # end
-
-  # def find_reviewable_activity
-  #   params.each do |name, value|
-  #     if name =~ /(.+)_id$/
-  #       binding.pry
-  #       return $2.classify.constantize.find(value)
-  #     end
-  #   end
-  #   nil
-  # end
-
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150228031706) do
+ActiveRecord::Schema.define(version: 20150301002045) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,27 +25,11 @@ ActiveRecord::Schema.define(version: 20150228031706) do
     t.datetime "updated_at",   null: false
   end
 
-  create_table "companions", force: :cascade do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "email"
-    t.boolean  "is_owner"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "companions_activities", force: :cascade do |t|
+  create_table "activities_users", force: :cascade do |t|
     t.integer  "activity_id"
-    t.integer  "companion_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  create_table "companions_itineraries", force: :cascade do |t|
-    t.integer  "companion_id"
-    t.integer  "itinerary_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "itineraries", force: :cascade do |t|
@@ -57,6 +41,14 @@ ActiveRecord::Schema.define(version: 20150228031706) do
     t.date     "return_date"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+  end
+
+  create_table "itineraries_users", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "itinerary_id"
+    t.boolean  "is_owner"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "reviews", force: :cascade do |t|

@@ -1,16 +1,16 @@
 Rails.application.routes.draw do
   root 'users#login'
-
+# => mandrill routes#
   get '/test', to: 'mandrill#test_form', as: "test_form"
   post '/test', to: 'mandrill#test', as: "test"
-
+# => Users Routes (i.e. access routes)#
   get '/login', to: 'users#login', as: "login"
   get '/signup', to: 'users#signup', as: "signup"
   get '/home', to: 'users#home', as: "home"
   post '/signup', to: 'users#create', as: "users"
   post '/login', to: 'users#attempt_login', as: "attempt_login"
   delete '/logout', to: 'users#logout', as: 'logout'
-
+  
   resources :itineraries do
     post '/reviews' => 'reviews#create', as: 'reviews'
     resources :activities do

@@ -19,10 +19,10 @@ ActiveRecord::Schema.define(version: 20150301002045) do
   create_table "activities", force: :cascade do |t|
     t.string   "location"
     t.string   "name"
-    t.integer  "itinerary_id"
+    t.integer  "destinations_id"
     t.date     "date"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "activities_users", force: :cascade do |t|

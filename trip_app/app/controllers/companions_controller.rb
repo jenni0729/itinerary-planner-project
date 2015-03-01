@@ -4,16 +4,20 @@ class CompanionsController < ApplicationController
   before_action :find_companion, only: [:show, :edit, :update]
 
   def show
-
   end
 
   def edit
   end
 
   def new
+    unless Companion.exists?(email: session[:email])
+      Companion.new
+
+    end
   end
 
   def index
+    @companion = Companion.all
   end
 
   def create

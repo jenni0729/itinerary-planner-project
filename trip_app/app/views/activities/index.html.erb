@@ -22,7 +22,7 @@
             <td><%= activity.date %></td>
             <td><%= link_to('Info', itinerary_activity_path(@itinerary, activity), {class: "btn-xs btn-info"})%></td>
             <td><%= link_to('Edit', edit_itinerary_activity_path(@itinerary, activity), {class: "btn-xs btn-info"})%></td>
-            <td><%= link_to('Delete', itinerary_activity_path(@itinerary, activity), method: :delete, data: { confirm: "Are you sure?" }, class: "btn-xs btn-danger")%></td>
+            <td><%= link_to('Delete', itinerary_activities_path(@itinerary), method: :delete, data: { confirm: "Are you sure?" }, class: "btn-xs btn-danger")%></td>
           </tr>
         <% end %>
       </table>

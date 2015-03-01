@@ -33,6 +33,16 @@
   <div class="row">
     <div class ="col-md-6">
       <h3 class="text-center">Companions</h3>
+      <%= form_for @user do |f| %>
+        <%= f.label :id, "Add a companion: " %>
+        <%= f.text_field :id, list: "users" %>
+        <datalist id="users">
+          <% @users.each do |user| %>
+            <option value=<%= user.id %>><%= user.first_name %> <%= user.last_name %></option>
+          <% end %>
+        </datalist>
+        <%= f.submit 'Add' %>
+      <% end %>
     </div>
     <div class ="col-md-6">
       <h3 class="text">Comments</h3>
@@ -47,12 +57,12 @@
             <th>Remove</th>
           <% end %>
         </tr>
-        <% @itinerary.users.each do |companion| %>
+        <% @itinerary.users.each do |user| %>
           <tr>
-            <td><%= companion.first_name %> <%= companion.last_name %></td>
+            <td><%= user.first_name %> <%= user.last_name %></td>
             <% if session[:user_id] == @itinerary.user_id %>
               <!-- double-check below -->
-              <td><%= link_to('Remove', itinerary_companion_path(@itinerary, companion), method: :delete, data: { confirm: "Are you sure?" }, class: "btn-xs btn-danger")%></td>
+              <td><%= link_to('Remove', remove_itinerary_user_path(@itinerary, user), method: :delete, data: { confirm: "Are you sure?" }, class: "btn-xs btn-danger")%></td>
             <% end %>
           </tr>
         <% end %>

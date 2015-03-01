@@ -17,14 +17,11 @@ Rails.application.routes.draw do
 
   post '/itineraries/:some_itinerary/activities/:activity_id/reviews' => 'reviews#create_review', as: 'itinerary_activity_reviews'
 
+
   resources :itineraries do
     post '/reviews' => 'reviews#create_review', as: 'reviews'
     resources :activities
     resources :companions
-  end
-
-  def invite_params
-    params.require(:invite).permit(:itinerary_id, :email)
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

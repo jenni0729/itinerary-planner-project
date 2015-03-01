@@ -1,10 +1,9 @@
 class ItinerariesController < ApplicationController
 
-  # before_action :find_itinerary, only: [:show, :edit, :destroy, :add_comment, :remove_comment]
   before_action :find_itinerary, only: [:show, :edit, :update]
 
   def index
-    @itineraries = Itinerary.all
+    @itineraries = User.find(session[:user_id]).itineraries
   end
 
   def new
@@ -23,12 +22,14 @@ class ItinerariesController < ApplicationController
   def create
     @itinerary = Itinerary.new itinerary_params
     if @itinerary.save
+      @user = User.find(session[:user_id])
+      @user.itineraries << @itinerary
       redirect_to itineraries_path
     else
       if session[:user_id] == nil
-      flash.now[:alert] = "Please Login"
-      else  
-      flash.now[:alert] = "Please correct the following input errors"
+        flash.now[:alert] = "Please Login"
+      else
+        flash.now[:alert] = "Please correct the following input errors"
       end
       render :new
     end
@@ -48,8 +49,8 @@ class ItinerariesController < ApplicationController
     itinerary = Itinerary.find params[:id] # No need for instance var here #
     if session[:user_id] != itinerary[:user_id]
       flash[:alert] = "You are not authorized to delete this itinerary"
-      redirect_to itineraries_path 
-    else  
+      redirect_to itineraries_path
+    else
     itinerary.destroy
     redirect_to itineraries_path
     end

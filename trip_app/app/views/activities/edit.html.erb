@@ -1,2 +1,36 @@
-<h1>Activities#edit</h1>
-<p>Find me in app/views/activities/edit.html.erb</p>
+<%= render "shared/navbar" %>
+<br><br><br>
+<div class="container-fluid">
+
+  <h2 class ="text-center">Edit Activity</h2>
+  <br>
+
+  <%= simple_form_for(@activity, url: itinerary_activity_path(@itinerary, @activity), defaults: { error_html: { id: 'error' } }, :html => { :class => "form-inline"}) do |f|%>
+  <div class="row">
+    <div class="col-md-2 col-md-offset-1">
+      <%= f.input :name%>
+    </div>
+    <div class="col-md-2 col-md-offset-1">
+      <%= f.input :location%>
+    </div>
+    <div class="col-md-4 col-md-offset-1">
+      <br>
+      <%= f.input :date%>
+    </div>
+    <!-- hidden input -->
+    <%= f.input :itinerary_id, :as => :hidden, :input_html => { :value => @itinerary.id }%>
+    <%= f.input :start_date, :as => :hidden, :input_html => { :value => @itinerary.departure_date }%>
+      <%= f.input :end_date, :as => :hidden, :input_html => { :value => @itinerary.return_date }%>
+  </div>
+  <br><br>
+  <div class ="row">
+    <div class = "col-md-2 col-md-offset-3">
+      <%= link_to('Back to Activities', itinerary_activities_path(@itinerary), {class: "btn btn-primary"}) %>
+    </div>
+    <div class ="col-md-2 col-md-offset-2">
+      <%= f.submit "Save changes", class: 'btn btn-primary' %>
+    </div>
+  </div>
+  <% end %>
+
+</div>

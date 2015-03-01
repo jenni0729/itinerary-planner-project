@@ -1,5 +1,11 @@
 class MandrillController < ApplicationController
 def test_form
+require 'mandrill'
+  @mandrill=User.new
+end
+
+def email 
+  binding.pry
 
 end
 

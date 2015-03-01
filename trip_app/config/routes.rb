@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   get '/test', to: 'mandrill#test_form', as: "test_form"
   post '/test', to: 'mandrill#test', as: "test"
+  post '/emails', to: 'mandrill#email', as: "email"
 
   get '/login', to: 'users#login', as: "login"
   get '/signup', to: 'users#signup', as: "signup"

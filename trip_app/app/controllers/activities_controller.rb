@@ -21,7 +21,6 @@ class ActivitiesController < ApplicationController
 
   def create
     @activity = Activity.new activity_params
-    binding.pry
     if @activity.save
       redirect_to itinerary_activities_path(@itinerary)
     else
@@ -64,7 +63,7 @@ class ActivitiesController < ApplicationController
   end
 
   def activity_params
-    params.require(:activity).permit(:name, :location, :date, :itinerary_id)
+    params.require(:activity).permit(:name, :location, :date, :itinerary_id, :start_date, :end_date)
   end
 
 

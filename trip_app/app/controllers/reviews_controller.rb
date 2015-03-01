@@ -40,7 +40,6 @@ class ReviewsController < ApplicationController
   def find_reviewable
     params.each do |name, value|
       if name =~ /(.+)_id$/
-        binding.pry
         return $1.classify.constantize.find(value)
       end
     end

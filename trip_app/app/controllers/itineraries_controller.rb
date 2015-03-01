@@ -4,7 +4,7 @@ class ItinerariesController < ApplicationController
   before_action :find_itinerary, only: [:show, :edit, :update]
 
   def index
-    @itineraries = User.find
+    @itineraries = (User.find(session[:user_id])).itineraries
   end
 
   def new
@@ -23,6 +23,9 @@ class ItinerariesController < ApplicationController
   def create
     @itinerary = Itinerary.new itinerary_params
     if @itinerary.save
+      @user = User.find(session[:user_id])
+      @user.itineraries << @itinerary
+      binding.pry
       redirect_to itineraries_path
     else
       if session[:user_id] == nil

@@ -21,8 +21,8 @@ ActiveRecord::Schema.define(version: 20150301191129) do
     t.string   "name"
     t.integer  "destinations_id"
     t.date     "date"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.date     "start_date"
     t.date     "end_date"
   end

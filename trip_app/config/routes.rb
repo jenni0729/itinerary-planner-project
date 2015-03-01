@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     post '/reviews' => 'reviews#create', as: 'reviews'
     resources :activities do
       resources :companions
+      post '/reviews' => 'reviews#create', as: 'reviews'
     end
     resources :companions
   end

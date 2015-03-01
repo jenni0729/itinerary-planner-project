@@ -1,2 +1,77 @@
-<h1>Activities#show</h1>
-<p>Find me in app/views/activities/show.html.erb</p>
+<%= render "shared/navbar" %>
+<div class="container-fluid">
+
+  <h2 class = "text-center"> <%= @activity.name%> </h2>
+
+  <!-- <table style = "border: 1px solid black; border-collapse: collapse"> -->
+  <div class="row">
+    <div class ="col-md-8 col-md-offset-2">
+      <table class ="table table-striped">
+        <tr>
+          <th>Name</th>
+          <th>Location</th>
+          <th>Date</th>
+          <th>Owner</th>
+        </tr>
+        <tr>
+          <td><%= @activity.name %></td>
+          <td><%= @activity.location %></td>
+          <td><%= @activity.date %></td>
+          <td><%= @itinerary_owner.username %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class ="col-md-6">
+      <h3 class="text-center">Companions</h3>
+    </div>
+    <div class ="col-md-6">
+      <h3 class="text">Comments</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class ="col-md-4 col-md-offset-2">
+      <table class ="table table-striped">
+        <tr>
+          <th>Name</th>
+          <% if session[:user_id] == @itinerary.user_id %>
+            <th>Remove</th>
+          <% end %>
+        </tr>
+        <% @activity.companions.each do |companion| %>
+          <tr>
+            <td><%= companion.first_name %> <%= companion.last_name %></td>
+            <% if session[:user_id] == @itinerary.user_id %>
+              <!-- double-check below -->
+              <td><%= link_to('Delete', itinerary_companion_path(@itinerary, companion), method: :delete, data: { confirm: "Are you sure?" }, class: "btn-xs btn-danger")%></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+    <div class ="col-md-6">
+      <br>
+      <% @reviews.each do |review| %>
+        <p>
+          <%= review.content %> - <%= time_ago_in_words review.created_at %> ago
+        </p>
+      <% end %>
+      <!-- rows are lines of text, column is one character (default column size applied here)
+      better to use CSS to manipulate text_area -->
+      <%= form_for [:itinerary, @activity, Review.new] do |f| %>
+        <div>
+          <%= f.text_area :content, :rows => 3, :cols => 50 %>
+        </div>
+        <%= f.submit "Add comment" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+

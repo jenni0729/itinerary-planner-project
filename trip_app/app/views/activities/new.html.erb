@@ -2,7 +2,7 @@
 
 <div class="container-fluid">
 <br><br>
-  <h2 class ="text-center">New Activity:</h2>
+  <h2 class ="text-center">New Activity</h2>
   <br>
 
   <%= simple_form_for(@activity, url: itinerary_activities_path(@itinerary), defaults: { error_html: { id: 'error' } }, :html => { :class => "form-inline"}) do |f|%>
@@ -17,6 +17,8 @@
       <br>
       <%= f.input :date%>
     </div>
+    <!-- hidden input -->
+    <%= f.input :itinerary_id, :as => :hidden, :input_html => { :value => @itinerary.id }%>
   </div>
   <br>
   <div class ="row">

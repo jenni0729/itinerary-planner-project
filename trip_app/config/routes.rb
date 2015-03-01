@@ -24,5 +24,8 @@ Rails.application.routes.draw do
     resources :activities
   end
 
+  def invite_params
+    params.require(:invite).permit(:itinerary_id, :email)
+  end
 
 end

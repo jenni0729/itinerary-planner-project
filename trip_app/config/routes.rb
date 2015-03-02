@@ -25,6 +25,8 @@ Rails.application.routes.draw do
     resources :activities
   end
 
+end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -79,5 +81,3 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
->>>>>>> b21dc279287edd7f36366157c30b27b324b9a302
-end

@@ -51,6 +51,7 @@ class UsersController < ApplicationController
 
   def add_itinerary
     @itinerary.users << @user
+    binding.pry
     redirect_to itinerary_path(@itinerary)
   end
 

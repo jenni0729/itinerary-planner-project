@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  root 'users#login'
+  root 'users#signup'
+
+  get 'itineraries/:id/invite', to: 'mandrill#invite_form', as: "invite_form"
 
   get '/test', to: 'mandrill#test_form', as: "test_form"
   post '/test', to: 'mandrill#test', as: "test"
@@ -79,5 +81,4 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
->>>>>>> b21dc279287edd7f36366157c30b27b324b9a302
 end

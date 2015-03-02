@@ -15,6 +15,7 @@
           <th>Return Date</th>
           <th>Owner</th>
           <th>Info</th>
+          <th>Invite</th>
           <th>Edit</th>
           <th>Delete</th>
         </tr>
@@ -27,6 +28,7 @@
           <td><%= itinerary.return_date %></td>
           <td><%= User.find(itinerary.user_id).username %></td>
           <td><%= link_to('Info', itinerary_path(itinerary), {class: "btn-xs btn-info"})%></td>
+           <td><%= link_to('Invite', invite_form_path(itinerary), {class: "btn-xs btn-info"})%></td>
           <td><%= link_to('Edit', edit_itinerary_path(itinerary), {class: "btn-xs btn-info"})%></td>
           <td><%= link_to('Delete', itinerary_path(itinerary), method: :delete, data: { confirm: "Are you sure? Deleting this itinerary will delete all corresponding acitivites and companions." }, class: "btn-xs btn-danger")%></td>
         </tr>

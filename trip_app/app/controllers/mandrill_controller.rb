@@ -8,6 +8,10 @@ def email
 
 end
 
+def invite_form
+@invite =Invite.new
+end
+
 require 'mandrill'
 mandrill = Mandrill::API.new ENV["MANDRIL_APIKEY"]
 

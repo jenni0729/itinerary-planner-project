@@ -5,13 +5,13 @@
   <br>
   <%= simple_form_for(@activity, url: itinerary_activities_path(@itinerary), defaults: { error_html: { id: 'error' } }, :html => { :class => "form-inline"}) do |f|%>
     <div class="row">
-      <div class="col-md-2 col-md-offset-2">
+      <div class="col-md-1 col-md-offset-3">
         <%= f.input :name %>
       </div>
       <div class="col-md-2 col-md-offset-1">
         <%= f.input :location %>
       </div>
-      <div class="col-md-4 col-md-offset-1">
+      <div class="col-md-4">
         <br>
         <%= f.input :date %>
       </div>

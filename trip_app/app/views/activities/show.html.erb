@@ -38,7 +38,9 @@
           <%= f.text_field :id, list: "users" %>
           <datalist id="users">
             <% @users.each do |user| %>
+            <% unless session[:user_id] == user.id %>
               <option value=<%= user.id %>><%= user.first_name %> <%= user.last_name %></option>
+            <% end %>
             <% end %>
           </datalist>
           <%= f.submit 'Add' %>
@@ -57,7 +59,9 @@
             <td><%= user.first_name %> <%= user.last_name %></td>
             <% if session[:user_id] == @itinerary.user_id %>
               <!-- double-check below -->
+              <% unless session[:user_id] == user.id %>
               <td><%= link_to('Remove', remove_itinerary_activity_user_path(@itinerary, @activity, user), method: :delete, data: { confirm: "Are you sure?" }, class: "btn-xs btn-danger")%></td>
+            <% end %>
             <% end %>
           </tr>
         <% end %>

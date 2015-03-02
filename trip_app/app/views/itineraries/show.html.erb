@@ -46,7 +46,9 @@
           <%= f.text_field :id, list: "users" %>
           <datalist id="users">
             <% @users.each do |user| %>
+            <% unless session[:user_id] == user.id %>
               <option value=<%= user.id %>><%= user.first_name %> <%= user.last_name %></option>
+            <% end %>
             <% end %>
           </datalist>
           <%= f.submit 'Add' %>

@@ -1,21 +1,4 @@
-<nav class="navbar navbar-default navbar-fixed-top">
-<br>
-  <div class="container-fluid">
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-left">
-        <li><p><%= link_to('Back to Activities', itinerary_activities_path(@itinerary), {class: "btn btn-primary"}) %></p></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><p><%= link_to('Home',itineraries_path, class: "btn btn-primary")%></p></li>
-          <% if session[:first_name] != nil %>
-        <li><p><%= link_to('Logout',logout_path, method: :delete,  class: "btn btn-primary")%></p></li>
-        <% else %>
-          <li><p><%= link_to('Login',login_path,  class: "btn btn-primary")%></p></li>
-         <% end %>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
+<%= render "shared/navbar" %>
 <br>
 <div class="container-fluid">
   <h2 class = "text-center"> <%= @activity.name%> </h2>
@@ -55,7 +38,7 @@
           <%= f.text_field :id, list: "users" %>
           <datalist id="users">
             <% @users.each do |user| %>
-            <% unless session[:user_id] == user.id %>
+            <% unless @itinerary.user_id == user.id %>
               <option value=<%= user.id %>><%= user.first_name %> <%= user.last_name %></option>
             <% end %>
             <% end %>
@@ -74,9 +57,10 @@
         <% @activity.users.each do |user| %>
           <tr>
             <td><%= user.first_name %> <%= user.last_name %></td>
+            binding.pry
             <% if session[:user_id] == @itinerary.user_id %>
               <!-- double-check below -->
-              <% unless session[:user_id] == user.id %>
+              <% unless @itinerary.user_id == user.id %>
               <td><%= link_to('Remove', remove_itinerary_activity_user_path(@itinerary, @activity, user), method: :delete, data: { confirm: "Are you sure?" }, class: "btn-xs btn-danger")%></td>
             <% end %>
             <% end %>
@@ -100,6 +84,11 @@
     </div>
   </div>
   <br>
+  <div class="row">
+    <div class = "col-md-2 col-md-offset-2">
+      <%= link_to('Back to Activities', itinerary_activities_path, {class: "btn btn-primary"}) %>
+    </div>
+  </div>
 </div>
 
 

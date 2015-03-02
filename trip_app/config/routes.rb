@@ -4,11 +4,12 @@ Rails.application.routes.draw do
   root 'users#login'
 
   get 'itineraries/:id/invite', to: 'mandrill#invite_form', as: "invite_form"
-  get 'itineraries/:id/invite/signup', to: 'mandrill#join', as: "invite_signup"
+  get 'itineraries/:id/invite/signup', to: 'users#join', as: "invite_signup"
 
   get '/test', to: 'mandrill#test_form', as: "test_form"
   post '/test', to: 'mandrill#test', as: "test"
   post '/emails', to: 'mandrill#email', as: "email"
+  post 'itineraries/:id/invite', to: 'mandrill#test', as: "invite"
 
   get '/login', to: 'users#login', as: "login"
   get '/signup', to: 'users#signup', as: "signup"

@@ -53,7 +53,7 @@ class UsersController < ApplicationController
     binding.pry
     @user = user_params[:id]
 
-    @user = User.find params[:id]
+    @user = User.find params[:id] 
     @itinerary.users << @user
     redirect_to itinerary_path(@itinerary)
   end
@@ -72,7 +72,10 @@ class UsersController < ApplicationController
     @activity.users.delete(@user)
     redirect_to itinerary_activity_path(@itinerary, @activity)
   end
-
+  def join
+    @user = User.new
+    @itinerary = Itinerary.find(params[:id])
+  end
 private
 
   def find_user

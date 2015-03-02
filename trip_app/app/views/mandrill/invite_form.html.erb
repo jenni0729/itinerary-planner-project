@@ -6,7 +6,7 @@
   <br>
   <p class = "text-center">*separate email with space*</p>
 
-   <%= form_for(@invite,url: invite_path, method: :post) do |f| %>
+   <%= form_for(@invite,url: invite_form_path, method: :post) do |f| %>
   <div class="row">
     <div class="col-md-6 col-md-offset-1">
     <%= f.text_area :email, :rows => 10, :cols => 150 %>

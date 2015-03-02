@@ -1,7 +1,6 @@
 class MandrillController < ApplicationController
 def test_form
-require 'mandrill'
-  @mandrill=User.new
+@invite = Invite.new
 end
 
 def email 
@@ -13,24 +12,31 @@ require 'mandrill'
 mandrill = Mandrill::API.new ENV["MANDRIL_APIKEY"]
 
 def test
+call
+end
+
+
+def call
+emails = invite_params[:email].split
+binding.pry
 require 'mandrill'
 m = Mandrill::API.new 
 message = {  
- :subject=> "Hello World",  
+ :subject=> "Join Itnierary Name Now!",  
  :from_name=> "George Navas",  
- :text=>"Hi message, how are you?",  
- :to=>[  
-   {  
-     :email=> "gannavas@gmail.com",  
-     :name=> "George"  
-   }  
- ],  
- :html=>"<html><h1>Hi <strong>message</strong>, Hello World. This is going to be wild.?</h1></html>",  
+ :text=>"Join George's Itinerary Now!",  
+ :to=> emails.map {|email|{email:email,name:"Friend"}},
+
+ :html=>"<html><h1>Hi <strong>message</strong>, Your friend just, George has invited you to join his itinerary: Tampa. <a href='www.espn.com'>Join Now!</a> </h1></html>",  
  :from_email=>"gannavas@gmail.com"  
 }  
+binding.pry
 sending = m.messages.send message  
 puts sending
-binding.pry
 end
+private
+  def invite_params
+    params.require(:invite).permit(:itinerary_id, :email)
+  end
 end
 

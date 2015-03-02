@@ -1,4 +1,9 @@
 class UsersController < ApplicationController
+
+  before_action :find_user, only: [:add_itinerary, :remove_itinerary, :add_activity, :remove_activity]
+  before_action :find_itinerary, only: [:add_itinerary, :remove_itinerary, :add_activity, :remove_activity]
+  before_action :find_activity, only: [:add_activity, :remove_activity]
+
   def login
     @user = User.new
   end
@@ -14,8 +19,8 @@ class UsersController < ApplicationController
     else
       flash.now[:notice] = "Please try again!!"
       render :signup
-    end    
-  end 
+    end
+  end
 
   def attempt_login
     if User.exists?(username: user_params[:username])
@@ -29,22 +34,55 @@ class UsersController < ApplicationController
       else
         flash[:notice] = "Incorrect Password"
         redirect_to login_path
-      end    
+      end
     else
       flash[:notice] = "Username not found"
       redirect_to login_path
-    end  
-  end 
+    end
+  end
 
-  def logout 
+  def logout
     session[:user_id] = nil
     session[:username] = nil
     session[:first_name] = nil
     flash[:notice] = "You are now logged out."
       redirect_to login_path
-  end 
+  end
+
+  def add_itinerary
+    @itinerary.users << @user
+    redirect_to itinerary_path(@itinerary)
+  end
+
+  def remove_itinerary
+    @itinerary.users.delete(@user)
+    redirect_to itinerary_path(@itinerary)
+  end
+
+  def add_activity
+    @activity.users << @user
+    redirect_to itinerary_activity_path(@itinerary, @activity)
+  end
+
+  def remove_activity
+    @activity.users.delete(@user)
+    redirect_to itinerary_activity_path(@itinerary, @activity)
+  end
 
 private
+
+  def find_user
+    @user = User.find params[:user_id]
+  end
+
+  def find_itinerary
+    @itinerary = Itinerary.find params[:itinerary_id]
+  end
+
+  def find_activity
+    @activity = Activity.find params[:activity_id]
+  end
+
   def user_params
   params.require(:user).permit(:username, :password, :email, :first_name, :last_name)
   end

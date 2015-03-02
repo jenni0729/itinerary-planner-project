@@ -13,6 +13,9 @@ class ItinerariesController < ApplicationController
   def show
     @itinerary_owner = User.find @itinerary.user_id
     @reviews = @itinerary.reviews
+    # @users and @user are needed for add companion dropdown
+    @users = User.all
+    @user = User.new
   end
 
   def edit

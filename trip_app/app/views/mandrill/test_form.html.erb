@@ -5,10 +5,12 @@
   <%= text_field_tag(:email) %>
   <%= submit_tag("Search") %>
 <% end %>
-
- <%= form_for(@mandrill,url: email_path, method: :post) do |f| %>
+<div class = "container-fluid">
+ <%= form_for(@invite,url: test_path, method: :post) do |f| %>
         <div>
-          <%= f.text_area :content, :rows => 3, :cols => 50 %>
+          <%= f.text_area :email, :rows => 3, :cols => 50 %>
         </div>
-        <%= f.submit "Add comment" %>
+        <%= f.submit "Add Emails" %>
       <% end %>
+
+</div>

@@ -39,12 +39,12 @@
             <th>Remove</th>
           <% end %>
         </tr>
-        <% @activity.users.each do |companion| %>
+        <% @activity.users.each do |user| %>
           <tr>
-            <td><%= companion.first_name %> <%= companion.last_name %></td>
+            <td><%= user.first_name %> <%= user.last_name %></td>
             <% if session[:user_id] == @itinerary.user_id %>
               <!-- double-check below -->
-              <td><%= link_to('Delete', itinerary_companion_path(@itinerary, companion), method: :delete, data: { confirm: "Are you sure?" }, class: "btn-xs btn-danger")%></td>
+              <td><%= link_to('Delete', remove_itinerary_activity_user_path(@itinerary, @activity, user), method: :delete, data: { confirm: "Are you sure?" }, class: "btn-xs btn-danger")%></td>
             <% end %>
           </tr>
         <% end %>

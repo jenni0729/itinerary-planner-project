@@ -50,9 +50,13 @@ class ActivitiesController < ApplicationController
     #   (defined in before_action above)
     itinerary = Itinerary.find params[:itinerary_id]
     if session[:user_id] != itinerary[:user_id]
+      puts "session user_id #{session[:user_id]}"
+      puts "itinerary user _id #{itinerary[:user_id]}"
       flash[:alert] = "You are not authorized to delete this activity"
       redirect_to itinerary_activities_path(itinerary, @activity)
     else
+      puts "session user_id #{session[:user_id]}"
+      puts "itinerary user _id #{itinerary[:user_id]}"
       @activity.destroy
       redirect_to itinerary_activities_path(itinerary)
     end

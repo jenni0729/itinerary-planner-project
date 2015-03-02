@@ -74,7 +74,7 @@ private
 
   def find_user
     binding.pry
-    @user = User.find user_params
+    @user = User.find params[:user][:id]
   end
 
   def find_itinerary
@@ -86,6 +86,7 @@ private
   end
 
   def user_params
-  params.require(:user).permit(:id, :username, :password, :email, :first_name, :last_name)
+    params.require(:user).permit(:id, :username, :password, :email, :first_name, :last_name)
+    binding.pry
   end
 end

@@ -82,9 +82,11 @@
         <% @itinerary.users.each do |user| %>
           <tr>
             <td><%= user.first_name %> <%= user.last_name %></td>
+            <% if @itinerary.user_id == session[:user_id] %>
             <% unless @itinerary.user_id == user.id %>
               <!-- double-check below -->
               <td><%= link_to('Remove', remove_itinerary_user_path(@itinerary, user), method: :delete, data: { confirm: "Are you sure?" }, class: "btn-xs btn-danger")%></td>
+            <% end %>
             <% end %>
           </tr>
         <% end %>

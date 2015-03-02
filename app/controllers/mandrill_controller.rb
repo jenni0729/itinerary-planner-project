@@ -33,7 +33,7 @@ message = {
  :text=>"#{inviter_name} has invited you to join #{@itinerary.name}!",  
  :to=> emails.map {|email|{email:email,name:"Friend"}},
 
- :html=>"<html><h1>Your friend, #{inviter_name}, has invited you to join their itinerary: #{@itinerary.name}. <a href='http://localhost:3000/itineraries/#{params[:id]}/invite/signup'>Join Now!</a> </h1></html>",  
+ :html=>"<html><h1>Your friend, #{inviter_name}, has invited you to join their itinerary: #{@itinerary.name}. <a href='https://desolate-shelf-9091.herokuapp.com/itineraries/#{params[:id]}/invite/signup'>Join Now!</a> </h1></html>",  
  :from_email=>"gannavas@gmail.com"  
 }  
 binding.pry

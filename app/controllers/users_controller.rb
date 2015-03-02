@@ -48,6 +48,7 @@ class UsersController < ApplicationController
         flash[:notice] = "Welcome #{@user.first_name}"
         if session[:itinerary_id] == nil
           redirect_to itineraries_path
+           session[:itinerary_id] == nil
         else
           redirect_to itinerary_path(session[:itinerary_id])
         end

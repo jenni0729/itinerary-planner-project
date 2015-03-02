@@ -50,6 +50,8 @@ class UsersController < ApplicationController
   end
 
   def add_itinerary
+    binding.pry
+    @user = user_params[:id]
     @itinerary.users << @user
     redirect_to itinerary_path(@itinerary)
   end
@@ -84,6 +86,6 @@ private
   end
 
   def user_params
-  params.require(:user).permit(:username, :password, :email, :first_name, :last_name)
+  params.require(:user).permit(:username, :password, :email, :first_name, :last_name, :id)
   end
 end

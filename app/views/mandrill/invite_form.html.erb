@@ -1,0 +1,21 @@
+<%= render "shared/navbar" %>
+
+<div class="container-fluid">
+<br><br>
+  <h2 class ="text-center">Invite Friends:</h2>
+  <br>
+  <p class = "text-center">*separate email with space*</p>
+
+   <%= form_for(@invite,url: invite_form_path, method: :post) do |f| %>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-1">
+    <%= f.text_area :email, :rows => 10, :cols => 150 %>
+    </div>
+    </div>
+    <Br>
+    <div class = "col-md-2 col-md-offset-5">
+    <%= f.submit "Email Friends" %>
+    <div>
+  <% end %>
+
+</div>

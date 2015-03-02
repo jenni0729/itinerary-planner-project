@@ -1,0 +1,2 @@
+class CompanionsActivitiesController < ApplicationController
+end

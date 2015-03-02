@@ -1,0 +1,2 @@
+module ItinerariesActivitiesHelper
+end

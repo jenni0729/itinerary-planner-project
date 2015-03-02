@@ -7,6 +7,15 @@
 # Ignore bundler config.
 /.bundle
 
+<<<<<<< HEAD
+# Ignore all logfiles and tempfiles.
+/log/*
+!/log/.keep
+/tmp
+
+# Ignore application configuration
+/config/application.yml
+=======
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal
@@ -44,3 +53,4 @@ config/secrets.yml
 /vendor/assets/bower_components
 *.bowerrc
 bower.json
+>>>>>>> 2ff94b955814c7b92b3011dd059937f54910e2a6

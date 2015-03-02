@@ -29,9 +29,11 @@ gem 'bootswatch-rails'
 gem 'mandrill-api'
 gem 'figaro'
 gem 'date_validator'
+gem 'rails_12factor', group: :production
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
-gem 'heroku'
+
+
 
 
 # Use Unicorn as the app server

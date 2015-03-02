@@ -1,0 +1,16 @@
+<%=link_to( "test", '/test', method: :post) %>
+
+<%= form_tag("/emails", method: "post") do %>
+  <%= label_tag(:email, "Search for:") %>
+  <%= text_field_tag(:email) %>
+  <%= submit_tag("Search") %>
+<% end %>
+<div class = "container-fluid">
+ <%= form_for(@invite,url: test_path, method: :post) do |f| %>
+        <div>
+          <%= f.text_area :email, :rows => 3, :cols => 50 %>
+        </div>
+        <%= f.submit "Add Emails" %>
+      <% end %>
+
+</div>

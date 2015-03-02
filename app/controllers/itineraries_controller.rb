@@ -49,9 +49,9 @@ class ItinerariesController < ApplicationController
   end
 
   def destroy
+    itinerary = Itinerary.find params[:id] # No need for instance var here #
     puts "session user_id #{session[:user_id]}"
     puts "itinerary user _id #{itinerary[:user_id]}"
-    itinerary = Itinerary.find params[:id] # No need for instance var here #
     if session[:user_id] != itinerary[:user_id]
       flash[:alert] = "You are not authorized to delete this itinerary"
       redirect_to itineraries_path

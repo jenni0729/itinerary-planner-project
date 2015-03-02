@@ -102,7 +102,7 @@
       <br>
       <% @reviews.each do |review| %>
         <p>
-          <%= review.content %> - <%= time_ago_in_words review.created_at %> ago by <strong><%= User.find(session[:user_id]).username %></strong>
+          <%= review.content %> - <%= time_ago_in_words review.created_at %> ago by <strong><%= User.find(review.user_id).username %></strong>
         </p>
       <% end %>
     </div>

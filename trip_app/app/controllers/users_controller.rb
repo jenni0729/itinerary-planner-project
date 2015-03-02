@@ -14,48 +14,43 @@ class UsersController < ApplicationController
   end
 
   def create
-    binding.pry
     @user = User.new user_params
     if @user.save
-        if params[:id] == nil
-          binding.pry
-      redirect_to login_path
-        else
-           binding.pry
+      if params[:id] == nil
+        redirect_to login_path
+      else
         @itinerary = Itinerary.find(params[:id])
-         @itinerary.users << @user
-         @user.authenticate(user_params[:password])
-          session[:user_id] = @user.id
-          session[:username] = @user.username
-          session[:first_name] = @user.first_name
-          flash[:notice] = "Welcome #{@user.first_name}"
-          redirect_to itinerary_path(params[:id])  
-        end
+        @itinerary.users << @user
+        @user.authenticate(user_params[:password])
+        session[:user_id] = @user.id
+        session[:username] = @user.username
+        session[:first_name] = @user.first_name
+        flash[:notice] = "Welcome #{@user.first_name}"
+        redirect_to itinerary_path(params[:id])
+      end
     else
       flash.now[:notice] = "Please try again!!"
       if params[:id] == nil
-      render :signup
+        render :signup
       else
-      render :join
-      end 
+        render :join
+      end
     end
   end
 
   def attempt_login
-    binding.pry
     if User.exists?(username: user_params[:username])
       @user = User.find_by(username: user_params[:username])
       if @user.authenticate(user_params[:password])
-          session[:user_id] = @user.id
-          session[:username] = @user.username
-          session[:first_name] = @user.first_name
-          flash[:notice] = "Welcome #{@user.first_name}"
-          if session[:itinerary_id] == nil
-            binding.pry
+        session[:user_id] = @user.id
+        session[:username] = @user.username
+        session[:first_name] = @user.first_name
+        flash[:notice] = "Welcome #{@user.first_name}"
+        if session[:itinerary_id] == nil
           redirect_to itineraries_path
-          else 
-          redirect_to itinerary_path(session[:itinerary_id])  
-          end
+        else
+          redirect_to itinerary_path(session[:itinerary_id])
+        end
       else
         flash[:notice] = "Incorrect Password"
         redirect_to login_path
@@ -71,7 +66,7 @@ class UsersController < ApplicationController
     session[:username] = nil
     session[:first_name] = nil
     flash[:notice] = "You are now logged out."
-      redirect_to login_path
+    redirect_to login_path
   end
 
   def add_itinerary

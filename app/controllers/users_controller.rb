@@ -66,7 +66,7 @@ class UsersController < ApplicationController
     session[:user_id] = nil
     session[:username] = nil
     session[:first_name] = nil
-    session[:itinerary_id] == nil
+    session[:itinerary_id] =nil
     flash[:notice] = "You are now logged out."
     redirect_to login_path
   end

@@ -1,10 +1,9 @@
 class ReviewsController < ApplicationController
 
   def create_review
-    unless find_reviewable.reviews.build(review_params).save
+    unless find_reviewable.reviews.build(review_params.merge user_id: session[:user_id]).save
       flash[:notice] = "Review validation failed"
     end
-    # :back is native?
     redirect_to :back
   end
 

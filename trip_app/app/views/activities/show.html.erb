@@ -1,4 +1,22 @@
-<%= render "shared/navbar" %>
+<nav class="navbar navbar-default navbar-fixed-top">
+<br>
+  <div class="container-fluid">
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-left">
+        <%= link_to('Back to Activities', itinerary_activities_path(@itinerary), {class: "btn btn-primary"}) %>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><p><%= link_to('Home',itineraries_path, class: "btn btn-primary")%></p></li>
+          <% if session[:first_name] != nil %>
+        <li><p><%= link_to('Logout',logout_path, method: :delete,  class: "btn btn-primary")%></p></li>
+        <% else %>
+          <li><p><%= link_to('Login',login_path,  class: "btn btn-primary")%></p></li>
+         <% end %>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
 <br>
 <div class="container-fluid">
   <h2 class = "text-center"> <%= @activity.name%> </h2>
@@ -57,9 +75,7 @@
         <% @activity.users.each do |user| %>
           <tr>
             <td><%= user.first_name %> <%= user.last_name %></td>
-            binding.pry
             <% if session[:user_id] == @itinerary.user_id %>
-              <!-- double-check below -->
               <% unless @itinerary.user_id == user.id %>
               <td><%= link_to('Remove', remove_itinerary_activity_user_path(@itinerary, @activity, user), method: :delete, data: { confirm: "Are you sure?" }, class: "btn-xs btn-danger")%></td>
             <% end %>
@@ -78,17 +94,12 @@
       <br>
       <% @reviews.each do |review| %>
         <p>
-          <%= review.content %> - <%= time_ago_in_words review.created_at %> ago by <strong><%= User.find(session[:user_id]).username %></strong>
+          <%= review.content %> - <%= time_ago_in_words review.created_at %> ago by <strong><%= User.find(review.user_id).username %></strong>
         </p>
       <% end %>
     </div>
   </div>
   <br>
-  <div class="row">
-    <div class = "col-md-2 col-md-offset-2">
-      <%= link_to('Back to Activities', itinerary_activities_path, {class: "btn btn-primary"}) %>
-    </div>
-  </div>
 </div>
 
 

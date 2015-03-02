@@ -50,11 +50,11 @@ class UsersController < ApplicationController
           session[:username] = @user.username
           session[:first_name] = @user.first_name
           flash[:notice] = "Welcome #{@user.first_name}"
-          if params[:id] == nil
+          if session[:itinerary_id] == nil
             binding.pry
           redirect_to itineraries_path
           else 
-          redirect_to itinerary_path(params[:id])  
+          redirect_to itinerary_path(session[:itinerary_id])  
           end
       else
         flash[:notice] = "Incorrect Password"
@@ -95,6 +95,7 @@ class UsersController < ApplicationController
   end
 
   def join
+    session[:itinerary_id] = params[:id]
     @user = User.new
     @itinerary = Itinerary.find(params[:id])
   end

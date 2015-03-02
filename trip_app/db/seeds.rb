@@ -5,6 +5,12 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+User.destroy_all
+Itinerary.destroy_all
+Activity.destroy_all
+Review.destroy_all
+
+
 User.create(first_name: 'Tom', last_name: 'Smith', username: 'tsmith', email: 'tsmith@smith.com', password: 'tsmith1')
 User.create(first_name: 'George', last_name: 'Navas', username: 'gnavas', email: 'gannavas@gmail.com', password: 'gnavas1')
 User.create(first_name: 'Ryan', last_name: 'Wilson', username: 'rwilson', email: 'rycwilson@gmail.com', password: 'rwilson1')
@@ -27,27 +33,27 @@ Activity.create(location: 'Federal Hill', name: 'Fed Hill Trip', itinerary_id: 2
 Activity.create(location: 'Globe Theater', name: 'Globe Theater Trip', itinerary_id: 3, date: '2015-6-2', start_date: '2015-6-1', end_date: '2015-6-7')
 Activity.create(location: 'Buckingham Palace', name: 'Buckingham Trip', itinerary_id: 3, date: '2015-6-3', start_date: '2015-6-1', end_date: '2015-6-7')
 
-Users_itinerary.create(user_id: 1 , itinerary_id: 1)
-Users_itinerary.create(user_id: 2 , itinerary_id: 1)
-Users_itinerary.create(user_id: 3 , itinerary_id: 1)
-Users_itinerary.create(user_id: 4 , itinerary_id: 1)
-Users_itinerary.create(user_id: 5 , itinerary_id: 2)
-Users_itinerary.create(user_id: 6 , itinerary_id: 2)
-Users_itinerary.create(user_id: 7 , itinerary_id: 2)
-Users_itinerary.create(user_id: 8 , itinerary_id: 2)
-Users_itinerary.create(user_id: 9 , itinerary_id: 3)
-Users_itinerary.create(user_id: 10 , itinerary_id: 3)
+ItinerariesUser.create(user_id: 1 , itinerary_id: 1)
+ItinerariesUser.create(user_id: 2 , itinerary_id: 1)
+ItinerariesUser.create(user_id: 3 , itinerary_id: 1)
+ItinerariesUser.create(user_id: 4 , itinerary_id: 1)
+ItinerariesUser.create(user_id: 5 , itinerary_id: 2)
+ItinerariesUser.create(user_id: 6 , itinerary_id: 2)
+ItinerariesUser.create(user_id: 7 , itinerary_id: 2)
+ItinerariesUser.create(user_id: 8 , itinerary_id: 2)
+ItinerariesUser.create(user_id: 9 , itinerary_id: 3)
+ItinerariesUser.create(user_id: 10 , itinerary_id: 3)
 
-Users_activity.create(activity_id: 1, user_id: 1)
-Users_activity.create(activity_id: 2, user_id: 2)
-Users_activity.create(activity_id: 1, user_id: 3)
-Users_activity.create(activity_id: 2, user_id: 4)
-Users_activity.create(activity_id: 3, user_id: 5)
-Users_activity.create(activity_id: 4, user_id: 6)
-Users_activity.create(activity_id: 3, user_id: 7)
-Users_activity.create(activity_id: 4, user_id: 8)
-Users_activity.create(activity_id: 5, user_id: 9)
-Users_activity.create(activity_id: 6, user_id: 10)
+ActivitiesUser.create(activity_id: 1, user_id: 1)
+ActivitiesUser.create(activity_id: 2, user_id: 2)
+ActivitiesUser.create(activity_id: 1, user_id: 3)
+ActivitiesUser.create(activity_id: 2, user_id: 4)
+ActivitiesUser.create(activity_id: 3, user_id: 5)
+ActivitiesUser.create(activity_id: 4, user_id: 6)
+ActivitiesUser.create(activity_id: 3, user_id: 7)
+ActivitiesUser.create(activity_id: 4, user_id: 8)
+ActivitiesUser.create(activity_id: 5, user_id: 9)
+ActivitiesUser.create(activity_id: 6, user_id: 10)
 
 Review.create(content: "Tom is the best person to travel with!", reviewable_type: "user", reviewable_id: 1)
 Review.create(content: "George is the best person to travel with!", reviewable_type: "user", reviewable_id: 2)

@@ -14,16 +14,35 @@ class UsersController < ApplicationController
   end
 
   def create
+    binding.pry
     @user = User.new user_params
     if @user.save
+        if params[:id] == nil
+          binding.pry
       redirect_to login_path
+        else
+           binding.pry
+        @itinerary = Itinerary.find(params[:id])
+         @itinerary.users << @user
+         @user.authenticate(user_params[:password])
+          session[:user_id] = @user.id
+          session[:username] = @user.username
+          session[:first_name] = @user.first_name
+          flash[:notice] = "Welcome #{@user.first_name}"
+          redirect_to itinerary_path(params[:id])  
+        end
     else
       flash.now[:notice] = "Please try again!!"
+      if params[:id] == nil
       render :signup
+      else
+      render :join
+      end 
     end
   end
 
   def attempt_login
+    binding.pry
     if User.exists?(username: user_params[:username])
       @user = User.find_by(username: user_params[:username])
       if @user.authenticate(user_params[:password])
@@ -31,7 +50,12 @@ class UsersController < ApplicationController
           session[:username] = @user.username
           session[:first_name] = @user.first_name
           flash[:notice] = "Welcome #{@user.first_name}"
+          if params[:id] == nil
+            binding.pry
           redirect_to itineraries_path
+          else 
+          redirect_to itinerary_path(params[:id])  
+          end
       else
         flash[:notice] = "Incorrect Password"
         redirect_to login_path

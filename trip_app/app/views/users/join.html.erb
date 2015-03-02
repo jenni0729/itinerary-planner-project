@@ -1,18 +1,11 @@
-<%= render "shared/navbar" %>
-<Br>
 <div class="container-fluid">
- <div class ="row">
-    <div class ="col-md-2 col-md-offset-11">
-     <%=  link_to('Sign in!', login_path, {class: "btn-lg btn-info"}) %>
-    </div>
-  </div>
 <br><br>
   <h2 class ="text-center">Create an account to join <%=@itinerary.name %>:</h2>
   <br>
 
-  <%= simple_form_for(@user, defaults: { error_html: { id: 'error' } }, :html => { :class => "form-inline"}) do |f|%>
+  <%= simple_form_for(@user, url: invited_user_signup_path, defaults: { error_html: { id: 'error' } }, :html => { :class => "form-inline"}) do |f|%>
   <div class="row">
-    <div class="col-md-2 col-md-offset-1">
+    <div class="col-md-2 col-md-offset-2">
       <%= f.input :first_name%>
     </div>
     <div class="col-md-2 col-md-offset-1">
@@ -24,7 +17,7 @@
   </div>
   <br>
   <div class="row">
-    <div class="col-md-2 col-md-offset-2">
+    <div class="col-md-2 col-md-offset-3">
       <%= f.input :email%>
     </div>
     <div class="col-md-2 col-md-offset-1">
@@ -35,6 +28,25 @@
   <div class ="row">
     <div class ="col-md-2 col-md-offset-5">
       <%= f.submit "Join #{@itinerary.name} ", class: 'btn-lg btn-primary' %>
+    </div>
+  </div>
+  <% end %>
+  <Br><Br><Br>
+  <p class="text-center"> Already signed up? </p>
+
+    <%= simple_form_for(@user,url: attempt_login_path(params[:id]), defaults: { error_html: { id: 'error' } }, :html => { :class => "form-inline"}) do |f|%>
+  <div class="row">
+    <div class="col-md-2 col-md-offset-4">
+      <%= f.input :username%>
+    </div>
+    <div class="col-md-2 col-md-offset-1">
+      <%= f.input :password%>
+    </div>
+  </div>
+  <br><br>
+  <div class ="row">
+    <div class ="col-md-2 col-md-offset-5">
+      <%= f.submit "Login to Join #{@itinerary.name} ", class: 'btn-lg btn-primary' %>
     </div>
   </div>
   <% end %>

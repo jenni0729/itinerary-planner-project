@@ -34,8 +34,8 @@
     <div class ="col-md-6">
       <h3 class="text-center">Companions</h3>
       <%= form_for @user, url: new_itinerary_user_path(@itinerary) do |f| %>
-        <%= f.label :banana, "Add a companion: " %>
-        <%= f.text_field :banana, list: "users" %>
+        <%= f.label :id, "Add a companion: " %>
+        <%= f.text_field :id, list: "users" %>
         <datalist id="users">
           <% @users.each do |user| %>
             <option value=<%= user.id %>><%= user.first_name %> <%= user.last_name %></option>

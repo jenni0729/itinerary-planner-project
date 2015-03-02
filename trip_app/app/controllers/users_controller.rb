@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :find_user, only: [:add_itinerary, :remove_itinerary, :add_activity, :remove_activity]
+  before_action :find_user, only: [:remove_itinerary, :add_activity, :remove_activity]
   before_action :find_itinerary, only: [:add_itinerary, :remove_itinerary, :add_activity, :remove_activity]
   before_action :find_activity, only: [:add_activity, :remove_activity]
 
@@ -50,8 +50,9 @@ class UsersController < ApplicationController
   end
 
   def add_itinerary
-    @itinerary.users << @user
     binding.pry
+    @user = User.find params[:id]
+    @itinerary.users << @user
     redirect_to itinerary_path(@itinerary)
   end
 
@@ -73,7 +74,8 @@ class UsersController < ApplicationController
 private
 
   def find_user
-    @user = User.find params[:user_id]
+    binding.pry
+    @user = User.find params[:id]
   end
 
   def find_itinerary

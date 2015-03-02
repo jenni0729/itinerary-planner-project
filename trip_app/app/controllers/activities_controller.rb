@@ -14,6 +14,9 @@ class ActivitiesController < ApplicationController
   def show
     @itinerary_owner = User.find @itinerary.user_id
     @reviews = @activity.reviews
+    # below necessary for companion dropdown
+    @users = User.all
+    @user = User.new
   end
 
   def edit
@@ -21,6 +24,9 @@ class ActivitiesController < ApplicationController
 
   def create
     @activity = Activity.new activity_params
+    # add the itinerary owner to the activity companion list
+    @user = User.find session[:user_id]
+    @activity.users << @user
     if @activity.save
       redirect_to itinerary_activities_path(@itinerary)
     else

@@ -33,30 +33,33 @@
   <div class="row">
     <div class ="col-md-6">
       <h3 class="text-center">Companions</h3>
-      <%= form_for @user, url: new_itinerary_user_path(@itinerary) do |f| %>
-        <%= f.label :id, "Add a companion: " %>
-        <%= f.text_field :id, list: "users" %>
-        <datalist id="users">
-          <% @users.each do |user| %>
-            <option value=<%= user.id %>><%= user.first_name %> <%= user.last_name %></option>
-          <% end %>
-        </datalist>
-        <%= f.submit 'Add' %>
-      <% end %>
     </div>
     <div class ="col-md-6">
       <h3 class="text">Comments</h3>
     </div>
   </div>
+  <% if session[:user_id] == @itinerary.user_id %>
+    <div class="row">
+      <div class ="col-md-4 col-md-offset-2">
+        <%= form_for @user, url: new_itinerary_user_path(@itinerary) do |f| %>
+          <%= f.label :id, "Add a companion: " %>
+          <%= f.text_field :id, list: "users" %>
+          <datalist id="users">
+            <% @users.each do |user| %>
+              <option value=<%= user.id %>><%= user.first_name %> <%= user.last_name %></option>
+            <% end %>
+          </datalist>
+          <%= f.submit 'Add' %>
+        <% end %>
+        <br>
+      </div>
+      <div class ="col-md-6">
+      </div>
+    </div>
+  <% end %>
   <div class="row">
     <div class ="col-md-4 col-md-offset-2">
       <table class ="table table-striped">
-        <tr>
-          <th>Name</th>
-          <% if session[:user_id] == @itinerary.user_id %>
-            <th>Remove</th>
-          <% end %>
-        </tr>
         <% @itinerary.users.each do |user| %>
           <tr>
             <td><%= user.first_name %> <%= user.last_name %></td>
@@ -69,19 +72,17 @@
       </table>
     </div>
     <div class ="col-md-6">
-      <br>
-      <% @reviews.each do |review| %>
-        <p>
-          <%= review.content %> - <%= time_ago_in_words review.created_at %> ago by <strong><%= User.find(session[:user_id]).username %></strong>
-        </p>
-      <% end %>
-      <!-- rows are lines of text, column is one character (default column size applied here)
-      better to use CSS to manipulate text_area -->
       <%= form_for [@itinerary, Review.new] do |f| %>
         <div>
           <%= f.text_area :content, :rows => 3, :cols => 50 %>
         </div>
         <%= f.submit "Add comment" %>
+      <% end %>
+      <br>
+      <% @reviews.each do |review| %>
+        <p>
+          <%= review.content %> - <%= time_ago_in_words review.created_at %> ago by <strong><%= User.find(session[:user_id]).username %></strong>
+        </p>
       <% end %>
     </div>
   </div>

@@ -1,8 +1,7 @@
 <%= render "shared/navbar" %>
-
+<br>
 <div class="container-fluid">
-<br><br>
-  <h2 class ="text-center">New Itinerary:</h2>
+  <h2 class ="text-center">New Itinerary</h2>
   <br>
 
   <%= simple_form_for(@itinerary, defaults: { error_html: { id: 'error' } }, :html => { :class => "form-group"}) do |f|%>
@@ -30,12 +29,12 @@
       <%= f.input :return_date%>
     </div>
   </div>
-  <br><br>
+  <br>
   <div class ="row">
-    <div class = "col-md-2 col-md-offset-3">
-      <%=  link_to('Back to Itineraries', itineraries_path, {class: "btn btn-primary"}) %>
+    <div class = "col-md-2 col-md-offset-2">
+      <%= link_to('Cancel', itineraries_path, {class: "btn btn-primary"}) %>
     </div>
-    <div class ="col-md-2 col-md-offset-2">
+    <div class ="col-md-2 col-md-offset-3">
       <%= f.submit "Create itinerary", class: 'btn btn-primary' %>
     </div>
   </div>

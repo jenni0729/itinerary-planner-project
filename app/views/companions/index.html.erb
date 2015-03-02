@@ -1,0 +1,36 @@
+<h1>Companions#index</h1>
+<p>Find me in app/views/companions/index.html.erb</p>
+<!-- <%= render "shared/navbar" %> -->
+
+<div class="container-fluid">
+  <br><Br>
+  <h2 class = "text-center">Companions for Itinerary: <%= @itinerary.name %></h2>
+  <br>
+
+  <!-- <table style = "border: 1px solid black; border-collapse: collapse"> -->
+  <div class="row">
+    <div class ="col-md-10 col-md-offset-1">
+      <table class ="table table-striped">
+        <tr>
+          <th>Companion Name</th>
+          <th>Itinerary Name</th>
+          <th>Origin</th>
+          <th>Destination</th>
+          <th>Info</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+        <% @itineraries.each do |itinerary| %>
+          <tr>
+            <td><%= companion.name %></td>
+            <td><%= itinerary.name %></td>
+            <td><%= itinerary.origin %></td>
+            <td><%= itinerary.destination %></td>
+            <td><%= link_to('Info', itinerary_companions_path(@itinerary, companion), {class: "btn-xs btn-info"})%></td>
+            <td><%= link_to('Edit', edit_itinerary_companion_path(@itinerary, companion), {class: "btn-xs btn-info"})%></td>
+            <td><%= link_to('Delete', itinerary_companion_path(@itinerary, companion), method: :delete, data: { confirm: "Are you sure?" }, class: "btn-xs btn-danger")%></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>

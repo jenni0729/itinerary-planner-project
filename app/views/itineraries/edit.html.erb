@@ -1,0 +1,45 @@
+<%= render "shared/navbar" %>
+<br>
+<div class="container-fluid">
+  <h2 class ="text-center">Edit Itinerary</h2>
+  <br>
+
+  <%= simple_form_for(@itinerary, defaults: { error_html: { id: 'error' } }, :html => { :class => "form-group"}) do |f|%>
+    <div class="row">
+      <div class="col-md-3 col-md-offset-5">
+        <%= f.input :name, label: "Itinerary Name:"%>
+        <br>
+      </div>
+      <div class ="row">
+        <div class="col-md-3 col-md-offset-3">
+          <%= f.input :origin  %>
+        </div>
+        <div class="col-md-3 col-md-offset-1">
+          <%= f.input :destination%>
+        </div>
+      </div>
+      <br>
+    <div class="row">
+      <%= f.input :user_id, :as => :hidden, :input_html => { :value => session[:user_id] }%>
+      <div class="col-md-3 col-md-offset-3">
+        <%= f.input :departure_date%>
+      </div>
+      <div class="col-md-3 col-md-offset-1">
+        <%= f.input :return_date%>
+      </div>
+    </div>
+    <br><br>
+    <div class ="row">
+      <div class = "col-md-1 col-md-offset-3">
+        <%= link_to('Cancel', itinerary_path(@itinerary), {class: "btn btn-primary"}) %>
+      </div>
+      <div class = "col-md-2 col-md-offset-3">
+        <%= link_to('Delete Itinerary', itinerary_path(@itinerary), method: :delete, data: { confirm: "Are you sure? Deleting this itinerary will delete all corresponding acitivites and companions." }, class: "btn btn-danger")%>
+      </div>
+      <div class ="col-md-2">
+        <%= f.submit "Save changes", class: 'btn btn-primary' %>
+      </div>
+    </div>
+  <% end %>
+
+</div>

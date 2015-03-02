@@ -1,0 +1,54 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+<br>
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-left">
+        <li><p><%=  link_to('Back to Itinerary', itinerary_path(@itinerary), {class: "btn btn-primary"}) %></p></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><p><%= link_to('Home',itineraries_path, class: "btn btn-primary")%></p></li>
+          <% if session[:first_name] != nil %>
+        <li><p><%= link_to('Logout',logout_path, method: :delete,  class: "btn btn-primary")%></p></li>
+        <% else %>
+          <li><p><%= link_to('Login',login_path,  class: "btn btn-primary")%></p></li>
+         <% end %>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<br>
+<div class="container-fluid">
+  <h2 class = "text-center">Activities for Itinerary: <%= @itinerary.name %></h2>
+  <br>
+  <!-- <table style = "border: 1px solid black; border-collapse: collapse"> -->
+  <div class="row">
+    <div class ="col-md-10 col-md-offset-1">
+      <table class ="table table-striped">
+        <tr>
+          <th>Name</th>
+          <th>Location</th>
+          <th>Date</th>
+          <th>Info</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+        <% @activities.each do |activity| %>
+          <tr>
+            <td><%= activity.name %></td>
+            <td><%= activity.location %></td>
+            <td><%= activity.date %></td>
+            <td><%= link_to('Info', itinerary_activity_path(@itinerary, activity), {class: "btn-xs btn-info"})%></td>
+            <td><%= link_to('Edit', edit_itinerary_activity_path(@itinerary, activity), {class: "btn-xs btn-info"})%></td>
+            <td><%= link_to('Delete', itinerary_activity_path(@itinerary, activity), method: :delete, data: { confirm: "Are you sure?" }, class: "btn-xs btn-danger")%></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class ="col-md-2 col-md-offset-1">
+      <%= link_to('Add new activity', new_itinerary_activity_path(@itinerary), {class: "btn btn-primary"}) %>
+    </div>
+  </div>
+</div>
